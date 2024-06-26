@@ -31,7 +31,6 @@ class UserAdapter(layout: Int) :
     }
 
     override fun onBind(holder: ViewHolder, view: View, position: Int, item: AllUserModel) {
-        Log.i(TAG, "onBind: " + item.name)
         view.run {
             textViewUserName.text = buildString {
                 append("User Name: ")
@@ -70,7 +69,6 @@ class UserAdapter(layout: Int) :
                         notifyDataSetChanged()
                     }
                 }
-
 
             }
         }

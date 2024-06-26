@@ -33,7 +33,6 @@ class MainActivity : BaseActivity(), RecyclerViewItemInterface {
     private var mUserAdapter: UserAdapter? = null
     private var pos = 0
 
-
     override fun getViewBinder(): ViewBinding {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         return mBinding
@@ -42,7 +41,6 @@ class MainActivity : BaseActivity(), RecyclerViewItemInterface {
     override fun initView() {
         viewModel = getViewModel { UserViewModel(UserRepository()) }
         mRealm = Realm.getDefaultInstance()
-
 
         mUserAdapter = UserAdapter(R.layout.layout_user_item)
         mUserAdapter!!.setItemClickListener(this)
@@ -142,7 +140,6 @@ class MainActivity : BaseActivity(), RecyclerViewItemInterface {
     override fun OnItemClick(position: Int) {
         DataHolder.getInstance().data = getAllUserRealmList[position]
         startActivityInlineWithAnimation<RepositoryDetailsActivity>()
-
     }
 
     override fun OnItemBookMarkClick(position: Int, id: Int) {
@@ -152,7 +149,6 @@ class MainActivity : BaseActivity(), RecyclerViewItemInterface {
                     ?.findFirst()
 
             allUserModel?.bookmark = true
-//            mRealm?.commitTransaction()
         })
 
         "Bookmark Added".showToast(this)
@@ -165,7 +161,6 @@ class MainActivity : BaseActivity(), RecyclerViewItemInterface {
                 mRealm?.where(AllUserModel::class.java)?.equalTo("id", id)
                     ?.findFirst()
             allUserModel?.bookmark = false
-//            mRealm?.commitTransaction()
         })
 
         mUserAdapter?.notifyDataSetChanged()
